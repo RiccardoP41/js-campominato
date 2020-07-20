@@ -13,7 +13,7 @@
 // con difficoltà 2 => tra 1 e 50
 
 
-var difficolta = prompt("scegli la difficoltà del gioco: difita F per facile, N per normale, D per difficile").toUpperCase();
+var difficolta = prompt("scegli la difficoltà del gioco: F per facile, N per normale, D per difficile").toUpperCase();
 
 var numeriAI = [];
 var bombe;
