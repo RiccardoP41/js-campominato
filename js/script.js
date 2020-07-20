@@ -141,7 +141,7 @@ switch (difficolta) {
 //                    numeriUtente.push(nu);
 //            }
 // } while (numeriUtente.length < 5 && trovaElemento(numeriAI,nu) == false);
-************************
+// ************************
 
 // if (numeriUtente.length == 84) {
 //     alert("Complimenti! Sei sopravvissuto!");
