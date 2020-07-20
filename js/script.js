@@ -13,7 +13,14 @@
 // con difficoltà 2 => tra 1 e 50
 
 
-var difficolta = prompt("scegli la difficoltà del gioco: F per facile, N per normale, D per difficile").toUpperCase();
+
+var difficolta;
+while (difficolta != "F" && difficolta != "N" && difficolta != "D") {
+    difficolta = prompt("scegli la difficoltà del gioco: F per facile, N per normale, D per difficile").toUpperCase();
+    if (difficolta != "F" && difficolta != "N" && difficolta != "D") {
+        alert("scrivi F, N o D per scegliere la difficoltà");
+    }
+}
 
 var numeriAI = [];
 var bombe;
