@@ -52,8 +52,6 @@ while (numeriUtente.length < 5 && trovaElemento(numeriAI,nu) == false) {
 //            }
 // } while (numeriUtente.length < 5 && trovaElemento(numeriAI,nu) == false);
 
-console.log("numeri utente " + numeriUtente);
-
 if (numeriUtente.length == 5) {
     alert("Complimenti! Sei sopravvissuto!");
 }
