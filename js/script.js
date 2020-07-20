@@ -21,23 +21,43 @@ for (var i = 0; numeriAI.length < 16; i++) {
         numeriAI.push(bombe);
     }
 }
-console.log("array bombe " + numeriAI);
+// console.log("array bombe " + numeriAI);
 
 // *****creare l'array per i numeri inseriti dall'utente evitando duplicati
 
 var numeriUtente = [];
 var nu;
-for (var i = 0; numeriUtente.length < 5; i++) {
+
+while (numeriUtente.length < 5 && trovaElemento(numeriAI,nu) == false) {
     nu = parseInt(prompt("inserisci un numero da 1 a 100"));
-     if (trovaElemento(numeriUtente,nu) == true || isNaN(nu) || nu < 1 || nu > 100) {
-        nu = parseInt(prompt("inserisci un numero da 1 a 100"));
-    } else if (trovaElemento(numeriAI,nu) == true) {
-        alert("Boom")
-    } else {
-            numeriUtente.push(nu);
-    }
+        if (trovaElemento(numeriUtente,nu) == true || isNaN(nu) || nu < 1 || nu > 100) {
+           // nu = parseInt(prompt("inserisci un altro numero da 1 a 100"));    //questo input non funziona
+           alert("Deve essere un altro numero tra 1 e 100!");
+       } else if (trovaElemento(numeriAI,nu) == true) {
+           alert("Boom! Sei esploso dopo " + numeriUtente.length + " buoni tentativi!");
+       } else {
+               numeriUtente.push(nu);
+       }
 }
+
+// do {
+//     nu = parseInt(prompt("inserisci un numero da 1 a 100"));
+//             if (trovaElemento(numeriUtente,nu) == true || isNaN(nu) || nu < 1 || nu > 100) {
+//                // nu = parseInt(prompt("inserisci un altro numero da 1 a 100"));    //questo input non funziona
+//                alert("Deve essere un altro numero tra 1 e 100!");
+//            } else if (trovaElemento(numeriAI,nu) == true) {
+//                alert("Boom! Sei esploso dopo " + numeriUtente.length + " buoni tentativi!");
+//            } else {
+//                    numeriUtente.push(nu);
+//            }
+// } while (numeriUtente.length < 5 && trovaElemento(numeriAI,nu) == false);
+
 console.log("numeri utente " + numeriUtente);
+
+if (numeriUtente.length == 5) {
+    alert("Complimenti! Sei sopravvissuto!");
+}
+
 
 
 
@@ -46,7 +66,6 @@ console.log("numeri utente " + numeriUtente);
 function numeroRandom(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
-
 
 
 function trovaElemento(array,elemento){
