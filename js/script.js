@@ -15,94 +15,53 @@
 
 
 var difficolta;
-while (difficolta != "F" && difficolta != "N" && difficolta != "D") {
-    difficolta = prompt("scegli la difficoltà del gioco: F per facile, N per normale, D per difficile").toUpperCase();
-    if (difficolta != "F" && difficolta != "N" && difficolta != "D") {
-        alert("scrivi F, N o D per scegliere la difficoltà");
+while (difficolta != 0 && difficolta != 1 && difficolta != 2) {
+    difficolta = parseInt(prompt("scegli la difficoltà del gioco: 0 per facile, 1 per normale, 2 per difficile"));
+    if (difficolta != 0 && difficolta != 1 && difficolta != 2) {
+        alert("scrivi 0, 1 o 2 per scegliere la difficoltà");
     }
 }
 
+switch (difficolta) {
+    case 0:
+        var massimo = 100;
+        break;
+    case 1:
+        var massimo = 80;
+        break;
+    case 2:
+        var massimo = 50;
+        break;
+}
+
 var numeriAI = [];
+var possibilita = massimo - numeriAI.length
 var bombe;
-for (var i = 0; numeriAI.length < 16; i++) {
-    switch (difficolta) {
-        case "F":
-            bombe  = numeroRandom(1,100);
-                if (trovaElemento(numeriAI,bombe) == false) {
+while (numeriAI.length < 16) {
+        bombe  = numeroRandom(1,100);
+        if (trovaElemento(numeriAI,bombe) == false) { //  si può scrivere (!trovaElemento(numeriAI,bombe))
                     numeriAI.push(bombe);
-                }
-            break;
-        case "N":
-            bombe  = numeroRandom(1,80);
-                if (trovaElemento(numeriAI,bombe) == false) {
-                    numeriAI.push(bombe);
-                }
-            break;
-        case "D":
-            bombe  = numeroRandom(1,50);
-                if (trovaElemento(numeriAI,bombe) == false) {
-                    numeriAI.push(bombe);
-                }
-            break;
-        default:
-            difficolta = 0;
-    }
+        }
 }
 
 var numeriUtente = [];
 var nu;
-switch (difficolta) {
-    case "F":
-        while (numeriUtente.length < 84 && trovaElemento(numeriAI,nu) == false) {
-            nu = parseInt(prompt("inserisci un numero da 1 a 100"));
-                if (trovaElemento(numeriUtente,nu) == true || isNaN(nu) || nu < 1 || nu > 100) {
-                   // nu = parseInt(prompt("inserisci un altro numero da 1 a 100"));    //questo input non funziona
-                   alert("Deve essere un altro numero tra 1 e 100!");
-               } else if (trovaElemento(numeriAI,nu) == true) {
-                   alert("Boom! Sei esploso dopo " + numeriUtente.length + " buoni tentativi!");
-               } else {
-                       numeriUtente.push(nu);
-               }
-        }
-        if (numeriUtente.length == 84) {
-            alert("Complimenti! Sei sopravvissuto!");
-        }
-            break;
-    case "N":
-        while (numeriUtente.length < 64 && trovaElemento(numeriAI,nu) == false) {
-            nu = parseInt(prompt("inserisci un numero da 1 a 80"));
-                if (trovaElemento(numeriUtente,nu) == true || isNaN(nu) || nu < 1 || nu > 80) {
-                   // nu = parseInt(prompt("inserisci un altro numero da 1 a 100"));    //questo input non funziona
-                   alert("Deve essere un altro numero tra 1 e 80!");
-               } else if (trovaElemento(numeriAI,nu) == true) {
-                   alert("Boom! Sei esploso dopo " + numeriUtente.length + " buoni tentativi!");
-               } else {
-                       numeriUtente.push(nu);
-               }
-        }
-        if (numeriUtente.length == 64) {
-            alert("Complimenti! Sei sopravvissuto!");
-        }
-            break;
-    case "D":
-        while (numeriUtente.length < 34 && trovaElemento(numeriAI,nu) == false) {
-            nu = parseInt(prompt("inserisci un numero da 1 a 50"));
-                if (trovaElemento(numeriUtente,nu) == true || isNaN(nu) || nu < 1 || nu > 50) {
-                   // nu = parseInt(prompt("inserisci un altro numero da 1 a 100"));    //questo input non funziona
-                   alert("Deve essere un altro numero tra 1 e 50!");
-               } else if (trovaElemento(numeriAI,nu) == true) {
-                   alert("Boom! Sei esploso dopo " + numeriUtente.length + " buoni tentativi!");
-               } else {
-                       numeriUtente.push(nu);
-               }
-        }
-        if (numeriUtente.length == 34) {
-            alert("Complimenti! Sei sopravvissuto!");
-        }
-            break;
-    default:
-        difficolta =  0;
+while (numeriUtente.length < possibilita && trovaElemento(numeriAI,nu) == false) {
+    nu = parseInt(prompt("inserisci un numero da 1 a " + massimo));
+        if (trovaElemento(numeriUtente,nu) == true || isNaN(nu) || nu < 1 || nu > massimo) {
+           // nu = parseInt(prompt("inserisci un altro numero da 1 a 100"));    //questo input non funziona
+           alert("Deve essere un altro numero tra 1 e " + massimo);
+       } else if (trovaElemento(numeriAI,nu) == true) {
+           alert("Boom! Sei esploso con punteggio " + numeriUtente.length);
+       } else {
+               numeriUtente.push(nu);
+       }
 }
+if (numeriUtente.length == possibilita) {
+    alert("Complimenti! Sei sopravvissuto!");
+}
+
+
 
 
 // **********PRIMA VERSIONE SENZA BONUS**********************
